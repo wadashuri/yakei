@@ -18,3 +18,17 @@ Route::get('/', function () {
 Route::get('/sample',function (){
     return 'abc';
 });
+
+Route::resource('posts','PostController');
+
+Route::resource('likes','LikeController')->only([
+    'index','store','destroy'
+    ]);
+    
+Route::resource('follows','FollowController')->only([
+    'index','store','destroy'
+    ]);
+
+Route::get('/follower','FollowController@followerIndex');
+
+Auth::routes();
