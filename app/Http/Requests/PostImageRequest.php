@@ -4,7 +4,7 @@ namespace App\Http\Requests;
  
 use Illuminate\Foundation\Http\FormRequest;
  
-class PostRequest extends FormRequest
+class PostImageRequest extends FormRequest
 {
  
     public function authorize()
@@ -15,8 +15,8 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'comment' => ['required', 'max:200'],
             'image' => [
+              'required',
               'file', // ファイルがアップロードされている
               'image', // 画像ファイルである
               'mimes:jpeg,jpg,png', // 形式はjpegかpng
