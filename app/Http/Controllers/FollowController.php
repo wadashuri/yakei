@@ -1,32 +1,46 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Follow;
 use Illuminate\Http\Request;
 
 class FollowController extends Controller
 {
-      public function index()
+   public function index()
     {
-         return view('follows.index', [
+        $follow_users = \Auth::user()->follow_users;
+        return view('follows.index', [
           'title' => 'フォロー一覧',
+          'follow_users' => $follow_users,
         ]);
     }
     
-     public function store()
+    public function store(Request $request)
     {
-        
+        $user = \Auth::user();
+        Follow::create([
+           'user_id' => $user->id,
+           'follow_id' => $request->follow_id,
+        ]);
+        \Session::flash('success', 'フォローしました');
+        return redirect()->route('posts.index');
     }
-    
-     public function destroy()
+ 
+    // フォロー削除処理
+    public function destroy($id)
     {
-        
+        $follow = \Auth::user()->follows->where('follow_id', $id)->first();
+        $follow->delete();
+        \Session::flash('success', 'フォロー解除しました');
+        return redirect()->route('posts.index');
     }
     
     public function followerIndex()
     {
-         return view('follows.follower_index', [
+        $followers = \Auth::user()->followers;
+        return view('follows.follower_index', [
           'title' => 'フォロワー一覧',
+          'followers' => $followers,
         ]);
     }
     

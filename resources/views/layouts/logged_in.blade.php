@@ -14,7 +14,19 @@
           </a>
         </li>
         <li>
-          ユーザープロフィール
+          <a href="{{ route('users.index') }}">
+          ユーザー詳細
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('follows.index') }}">
+          フォロー一覧
+          </a>
+        </li>
+         <li>
+          <a href="/follower">
+          フォロワー一覧
+          </a>
         </li>
         <li>
             <form action="{{ route('logout') }}" method="POST">
