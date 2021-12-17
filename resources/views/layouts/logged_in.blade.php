@@ -36,5 +36,6 @@
         </li>
     </ul>
     <p>{{ Auth::user()->name }}さん、こんにちは！</p>
+    
 </header>
 @endsection

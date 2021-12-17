@@ -3,6 +3,13 @@
 @section('content')
   <h1>{{ $title }}</h1>
   <a href="{{route('posts.create')}}">新規投稿</a>
+  <form method="GET" action="{{route('posts.index')}}">
+      <div>
+          <label>
+            <input type="text" name="comment">
+          </label>
+      <input type="submit" value="検索">
+  </form>
   <ul class="recommend_users">
     @forelse($recommended_users as $recommended_user)
       <li>
@@ -69,7 +76,6 @@
           <li>書き込みはありません。</li>
       @endforelse
   </ul>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
     /* global $ */
     $('.like_button').on('click', (event) => {
