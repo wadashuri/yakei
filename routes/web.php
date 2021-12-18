@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::get('/sample',function (){
     return 'abc';
 });
+Route::get('/serch','PostController@serch');
 
 Route::resource('posts','PostController');
 
@@ -40,3 +41,4 @@ Route::patch('/posts/{post}/edit_image', 'PostController@updateImage')->name('po
 Route::resource('users', 'UserController');
 
 Route::patch('/posts/{post}/toggle_like', 'PostController@toggleLike')->name('posts.toggle_like');
+

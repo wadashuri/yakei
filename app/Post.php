@@ -25,4 +25,11 @@ class Post extends Model
       $result = $liked_users_ids->contains($user->id);
       return $result;
     }
+    //スコープを定義
+   //public function scopeSearch($query, $searchword){
+
+        //return $query->where(function ($query) use($searchword) {
+            //$query->orWhere('name', 'like', "%{$searchword}%")
+        //});
+    //}
 }
