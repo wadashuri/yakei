@@ -12,7 +12,7 @@
  
     <link rel="stylesheet" href="{{ secure_asset('css/styles.css') }}">
 </head>
-<body>
+<body class="container">
     @yield('header')
  
     {{-- エラーメッセージを出力 --}}
@@ -26,7 +26,6 @@
             {{ \Session::get('success') }}
         </div>
     @endif
- 
     @yield('content')
 </body>
 </html>

@@ -18,8 +18,8 @@ class PostController extends Controller
     {
         $user = \Auth::user();
         return view('posts.index', [
-            'title' => '投稿一覧',
-            'posts' => Post::where('comment' ,'like', "%".$request->comment."%")->get(),
+            'title' => '夜景一覧',
+            'posts' => Post::where('comment' ,'like', "%".$request->comment."%")->latest()->get(),
             'recommended_users' => User::recommend($user->id)->get()
         ]);
     }
@@ -55,6 +55,7 @@ class PostController extends Controller
         Post::create([
           'user_id' => \Auth::user()->id,
           'comment' => $request->comment,
+          'explanation' => $request->explanation,
           'image' => $path, // ファイルパスを保存
         ]);
         session()->flash('success', '投稿を追加しました');
@@ -98,7 +99,7 @@ class PostController extends Controller
     public function update(PostRequest $request, $id)
     {
         $post = Post::find($id);
-        $post->update($request->only(['comment']));
+        $post->update($request->only(['comment','explanation']));
         session() ->flash('success','投稿を編集しました');
         return redirect()->route('posts.index');
     }
@@ -182,4 +183,11 @@ class PostController extends Controller
           }
           return redirect('/posts');
       }
+      
+      public function top()
+    {
+        return view('posts.top', [
+          'title' => 'トップ画面',
+        ]);
+    }
 }

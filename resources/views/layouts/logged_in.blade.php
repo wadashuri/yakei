@@ -1,41 +1,22 @@
 @extends('layouts.default')
  
 @section('header')
-<header>
-    <ul class="header_nav">
-        <li>
-          <a href="{{ route('posts.index') }}">
-            投稿一覧
-          </a>
-        </li>
-        <li>
-          <a href="{{ route('likes.index') }}">
-            いいねリスト
-          </a>
-        </li>
-        <li>
-          <a href="{{ route('users.index') }}">
-          ユーザー詳細
-          </a>
-        </li>
-        <li>
-          <a href="{{ route('follows.index') }}">
-          フォロー一覧
-          </a>
-        </li>
-         <li>
-          <a href="/follower">
-          フォロワー一覧
-          </a>
-        </li>
-        <li>
-            <form action="{{ route('logout') }}" method="POST">
+<header class="header_image">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top container">
+    <a href="/" class="nav-link">トップページ</a>
+    <a href="{{ route('posts.index') }}" class="nav-link">夜景一覧</a>
+    <a href="{{ route('likes.index') }}" class="nav-link">お気に入りリスト</a>
+    <form method="GET"　class="form-inline ml-auto" action="{{route('posts.index')}}">
+<label>
+    　地名を検索
+            <input type="text"　class="form-control form-control-sm mr-2" name="comment" placeholder="例：渋谷・原宿">
+          </label>
+     <input type="submit" class="btn btn-primary" value="検索する">
+     </form>
+    <form class="form-inline ml-auto" action="{{ route('logout') }}" method="POST">
                 @csrf
-                <input type="submit" value="ログアウト">
+                <input type="submit" class="form-control form-control-sm mr-2" value="ログアウト">
             </form>
-        </li>
-    </ul>
-    <p>{{ Auth::user()->name }}さん、こんにちは！</p>
-    
+</nav>
 </header>
 @endsection

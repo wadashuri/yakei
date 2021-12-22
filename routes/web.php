@@ -42,3 +42,5 @@ Route::resource('users', 'UserController');
 
 Route::patch('/posts/{post}/toggle_like', 'PostController@toggleLike')->name('posts.toggle_like');
 
+Route::get('/','PostController@top');
+
