@@ -45,3 +45,23 @@
 .follow {
   cursor: pointer;
 }
+
+.header_image {
+    background-image: url(test.jpg);
+     background-size: cover;
+    height: 430px;
+    padding-top: 20px;
+}
+ .post {
+   list-style-type: none;
+   padding-bottom:20px; 
+   border: solid 1px #80808052;
+    margin-right: 410px;
+    padding: 7px;
+    margin-bottom: 50px;
+ }
+
+.search-style {
+    background-color: white;
+}
+

@@ -16,6 +16,7 @@ class PostRequest extends FormRequest
     {
         return [
             'comment' => ['required', 'max:200'],
+            'explanation'=> ['required', 'max:1000'],
             'image' => [
               'file', // ファイルがアップロードされている
               'image', // 画像ファイルである

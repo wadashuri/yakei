@@ -13,7 +13,12 @@
             <input type="text" name="comment" value="{{ $post->comment }}">
           </label>
       </div>
- 
+     <div>
+          <label>
+            説明：
+            <input type="text" name="explanation" value="{{ $post->explanation }}">
+          </label>
+      </div>
       <input type="submit" value="投稿">
   </form>
 @endsection

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['user_id','comment','image'];
+    protected $fillable = ['user_id','comment','image','explanation'];
     
     public function user() {
         return $this->belongsTo('App\User');
@@ -25,11 +25,4 @@ class Post extends Model
       $result = $liked_users_ids->contains($user->id);
       return $result;
     }
-    //スコープを定義
-   //public function scopeSearch($query, $searchword){
-
-        //return $query->where(function ($query) use($searchword) {
-            //$query->orWhere('name', 'like', "%{$searchword}%")
-        //});
-    //}
 }

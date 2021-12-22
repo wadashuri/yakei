@@ -3,42 +3,15 @@
 @section('content')
   <h1>{{ $title }}</h1>
   <a href="{{route('posts.create')}}">新規投稿</a>
-  <form method="GET" action="{{route('posts.index')}}">
-      <div>
-          <label>
-            <input type="text" name="comment">
-          </label>
-      <input type="submit" value="検索">
-  </form>
-  <ul class="recommend_users">
-    @forelse($recommended_users as $recommended_user)
-      <li>
-        <a href="{{ route('users.show', $recommended_user) }}">{{ $recommended_user->name }}</a>
-        @if(Auth::user()->isFollowing($recommended_user))
-          <form method="post" action="{{route('follows.destroy', $recommended_user)}}" class="follow">
-            @csrf
-            @method('delete')
-            <input type="submit" value="フォロー解除">
-          </form>
-        @else
-          <form method="post" action="{{route('follows.store')}}" class="follow">
-            @csrf
-            <input type="hidden" name="follow_id" value="{{ $recommended_user->id }}">
-            <input type="submit" value="フォロー">
-          </form>
-        @endif
-      </li>
-    @empty
-      <li>おすすめユーザーはいません。</li>
-    @endforelse
-  </ul>
   <ul class="posts">
       @forelse($posts as $post)
           <li class="post">
-            <div class="post_content">
               <div class="post_body">
                 <div class="post_body_heading">
-                  投稿者:{{ $post->user->name }}
+                  <div class="post_body_main_comment">
+                    <h2>{{ $post->comment }}</h2>
+                  </div>
+                  更新日
                   ({{ $post->created_at }})
                 </div>
                 <div class="post_body_main">
@@ -48,13 +21,11 @@
                     @else
                         <img src="{{ asset('images/no_image.png') }}">
                     @endif
-                    <a href="{{ route('posts.edit_image', $post) }}">画像を変更</a>
-                  </div>
-                  <div class="post_body_main_comment">
-                    {{ $post->comment }}
                   </div>
                 </div>
+                <a href="{{ route('posts.edit_image', $post) }}">画像を変更</a>
                 <div class="post_body_footer">
+                  お気に入りリストに保存
                   <a class="like_button">{{ $post->isLikedBy(Auth::user()) ? '★' : '☆' }}</a>
                   <form method="post" class="like" action="{{ route('posts.toggle_like', $post) }}">
                     @csrf
@@ -67,13 +38,11 @@
                     <input type="submit" value="削除">
                   </form>
                 </div>
-                </div>
-              </div>
             </div>
-            
+            {{ $post->explanation }}
           </li>
       @empty
-          <li>書き込みはありません。</li>
+          夜景はありません。
       @endforelse
   </ul>
   <script>

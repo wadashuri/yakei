@@ -15,7 +15,7 @@ class UserController extends Controller
     {
         $user = \Auth::user();
         return view('users.index', [
-          'title' => 'ユーザー詳細画面',
+          'title' => 'ユーザープロフィール',
           'user' => $user,
         ]);
     }
